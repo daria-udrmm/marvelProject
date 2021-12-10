@@ -1,0 +1,82 @@
+@import '../../style/variables.scss';
+
+.single-comic {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: 293px 550px auto;
+    column-gap: 50px;
+    align-items: start;
+    &__img {
+        width: 293px;
+        height: 450px;
+    }
+    &__name {
+        font-weight: bold;
+        font-size: 22px;
+        line-height: 29px;
+    }
+    &__descr {
+        font-size: 18px;
+        line-height: 24px;
+        margin-top: 25px;
+    }
+    &__price {
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 32px;
+        color: $main-color;
+        margin-top: 25px;
+    }
+    &__back {
+        justify-self: end;
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 24px;
+        &:hover {
+            color: $main-color;
+        }
+    }
+}
+
+@media (max-width: 1300px){
+    .single-comic{
+        grid-template-columns: 1fr 3fr .5fr;
+        max-width: 1400px;
+        padding: 0 30px;
+    }
+}
+
+@media (max-width: 1050px){
+    .single-comic{
+        grid-template-columns: 1fr 1.5fr 0.5fr;
+        column-gap: 20px;
+    }
+}
+@media (max-width: 800px){
+    .single-comic{
+        &__img{
+            width: 220px;
+            height: 300px;
+        }
+    }
+}
+
+@media (max-width: 500px){
+    .single-comic{
+        padding: 0 15px;
+        display: grid;
+        grid-template-columns: 1fr;
+        &__back{
+            grid-area: 1;
+            margin-bottom: 30px;
+            justify-self: left;
+        }
+        &__name{
+            margin-top: 20px;
+        }
+        &__descr,
+        &__price{
+            margin-top: 15px;
+        }
+    }
+}
