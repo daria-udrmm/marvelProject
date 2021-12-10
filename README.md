@@ -11,8 +11,8 @@
 
 ## Команды
 Установка зависимостей :
-### npm i 
+<hr/> npm i 
 
 Запуск проекта:
-### npm start
-### npm build
+<hr/> npm start
+<hr/> npm build
