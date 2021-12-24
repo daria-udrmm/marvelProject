@@ -15,4 +15,4 @@
 
 Запуск проекта:
 `npm start`
-`npm build`
+`npm run build`
