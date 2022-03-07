@@ -1,29 +1,27 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 
 import Spinner from '../spinner/Spinner';
 import MarvelService from '../../services/MarvelService';
 import './charList.scss';
-// import abyss from '../../resources/img/abyss.jpg';
 
-const CharList = (props) => {
+const CharList = ({onCharSelected}) => {
 
-    const [persone, setPerson] = useState([]);
+    const [person, setPerson] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
     const [offset, setOffset] = useState(410);
     const [newItemsLoading, setNewItemsLoading] = useState(false);
 
-    const MarvelSAllervice = new MarvelService();
+    const MarvelAllService = new MarvelService();
 
     useEffect(() => {
         onRequest();
     }, []);
-    //useEffect запускается после рендера, поэтому стрелочную функцию можно вызывать выше места объявления
     
     const onRequest = (offset) => {
         onCharListLoading();
 
-        MarvelSAllervice.getAllCharacters(offset)
+        MarvelAllService.getAllCharacters(offset)
             .then(onCharListLoaded)
             .catch(onError)
     }
@@ -32,17 +30,13 @@ const CharList = (props) => {
         setNewItemsLoading(true);
     }
 
-    const onCharListLoaded = (newPersone) => {
+    const onCharListLoaded = (newPerson) => {
 
-        setPerson(persone => [...persone, ...newPersone]);
+        setPerson(person => [...person, ...newPerson]);
         setLoading(false);
         setNewItemsLoading(false);
         setOffset(offset => offset + 9);
 
-    }
-
-    const updateCharactets = () => {
-        onRequest();
     }
 
     const onError = () => {
@@ -50,15 +44,15 @@ const CharList = (props) => {
         setError(true);
     }
 
-    function allChar(persone){
+    function allChar(person){
         return(
-            persone.map(item => {
+            person.map(item => {
                 let imgStyle = {'objectFit' : 'cover'};
                 if (item.thumbnail === 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg'){
                     imgStyle = {'objectFit' : 'unset'};
                 }
                 return(
-                    <li className="char__item" key={item.id} onClick={()=>props.onCharSelected(item.id)}>
+                    <li className="char__item" key={item.id} onClick={()=>onCharSelected(item.id)}>
                         <img src={item.thumbnail} alt="abyss" style={imgStyle}/>
                         <div className="char__name">{item.name}</div>
                     </li>
@@ -67,10 +61,8 @@ const CharList = (props) => {
         )
     }
 
-    // console.log(this.state);
-    // const {loading, offset, newItemsLoading} = this.state;
     const spinner = loading ? <Spinner/> : null;
-    const allCharAll = !loading ? allChar(persone) : null;
+    const allCharAll = !loading ? allChar(person) : null;
     return (
         <div className="char__list">
             <ul className="char__grid">

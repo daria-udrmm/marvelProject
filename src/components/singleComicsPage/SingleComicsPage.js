@@ -24,14 +24,12 @@ const SingleComicsPage = () => {
         setComic(comic);
     }
 
-    // const errorMessage = error ? <ErrorMessage/> : null;
     const spinner = loading ? <Spinner/> : null;
     const content = !(loading || error || !comic) ? <View comic={comic}/> : null;
 
     return (
         <>
             <AppBanner/>
-            {/* {errorMessage} */}
             {spinner}
             {content}
         </>

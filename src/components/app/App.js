@@ -9,8 +9,6 @@ import ComicsList from '../comicsList/ComicsList';
 import AppBanner from "../appBanner/AppBanner";
 import decoration from '../../resources/img/vision.png';
 
-
-//ленивая подгрузка
 const SingleComicsPage = lazy(() => import('../singleComicsPage/SingleComicsPage'))
 
 const App = () => {
