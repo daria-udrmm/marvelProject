@@ -27,7 +27,6 @@ const RandomChar = () => {
     }
 
     const onError = () => {
-        this.setState({loading: false, error: true})
         setLoading(true);
         setError(true);
     }

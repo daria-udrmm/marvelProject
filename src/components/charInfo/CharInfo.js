@@ -96,16 +96,13 @@ const View = ({char}) => {
             <div className="char__comics">Comics:</div>
             <ul className="char__comics-list">
                 {char.comics.length > 0 ? null : 'There is no comics with this character'}
-                {char.comics.map((item, i) => {
-                    if (i > 3){
-                        return;
-                    }
-                    return(
+                {char.comics.slice(0, 4).map((item, i) =>
+                    (
                         <li key={i} className="char__comics-item">
                             {item.name}
                         </li>
                     )
-                })}
+                )}
                  
             </ul>
         </>
